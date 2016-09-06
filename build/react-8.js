@@ -70,6 +70,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -97,21 +99,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _state = this.state;
 	      var disabled = _state.disabled;
 	      var loading = _state.loading;
+	      var _props = this.props;
+	      var offsetRatio = _props.offsetRatio;
+	      var onNewData = _props.onNewData;
+
+	      var rest = _objectWithoutProperties(_props, ['offsetRatio', 'onNewData']);
 
 	      var enabled = !disabled && !loading; // not listening for onScroll event
 	      // if disabled or loading
 	      return _react2.default.createElement(
 	        'div',
-	        _extends({}, this.props, { onScroll: enabled && this.handleScroll.bind(this) }),
+	        _extends({}, rest, { onScroll: enabled && this.handleScroll.bind(this) }),
 	        this.props.children
 	      );
 	    }
 	  }, {
 	    key: 'handleScroll',
 	    value: function handleScroll(e) {
-	      var _props = this.props;
-	      var offsetRatio = _props.offsetRatio;
-	      var onNewData = _props.onNewData;
+	      var _props2 = this.props;
+	      var offsetRatio = _props2.offsetRatio;
+	      var onNewData = _props2.onNewData;
 	      var target = e.target;
 
 	      var fullHeight = target.scrollHeight;
