@@ -56,19 +56,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -82,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function Infinity(props) {
 	    _classCallCheck(this, Infinity);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Infinity).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Infinity.__proto__ || Object.getPrototypeOf(Infinity)).call(this, props));
 
 	    _this.state = {
 	      disabled: false,
@@ -97,21 +99,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _state = this.state;
 	      var disabled = _state.disabled;
 	      var loading = _state.loading;
+	      var _props = this.props;
+	      var offsetRatio = _props.offsetRatio;
+	      var onNewData = _props.onNewData;
+
+	      var rest = _objectWithoutProperties(_props, ['offsetRatio', 'onNewData']);
 
 	      var enabled = !disabled && !loading; // not listening for onScroll event
 	      // if disabled or loading
 	      return _react2.default.createElement(
 	        'div',
-	        _extends({}, this.props, { onScroll: enabled && this.handleScroll.bind(this) }),
+	        _extends({}, rest, { onScroll: enabled && this.handleScroll.bind(this) }),
 	        this.props.children
 	      );
 	    }
 	  }, {
 	    key: 'handleScroll',
 	    value: function handleScroll(e) {
-	      var _props = this.props;
-	      var offsetRatio = _props.offsetRatio;
-	      var onNewData = _props.onNewData;
+	      var _props2 = this.props;
+	      var offsetRatio = _props2.offsetRatio;
+	      var onNewData = _props2.onNewData;
 	      var target = e.target;
 
 	      var fullHeight = target.scrollHeight;
@@ -151,6 +158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react2.default.Component);
 
 	exports.default = Infinity;
+
 
 	Infinity.defaultProps = {
 	  offsetRatio: .5
