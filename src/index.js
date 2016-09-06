@@ -10,10 +10,11 @@ export default class Infinity extends React.Component {
   }
   render() {
     const {disabled, loading} = this.state;
+    const {offsetRatio, onNewData, ...rest} = this.props;
     const enabled = !disabled && !loading; // not listening for onScroll event
                                            // if disabled or loading
     return (
-      <div {...this.props} onScroll={enabled && this.handleScroll.bind(this)}>
+      <div {...rest} onScroll={enabled && this.handleScroll.bind(this)}>
         {this.props.children}
       </div>
     );
