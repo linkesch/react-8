@@ -1,6 +1,6 @@
 {
   "name": "react-8",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple infinite scrolling for React",
   "main": "build/react-8.js",
   "scripts": {
