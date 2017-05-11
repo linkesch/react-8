@@ -96,26 +96,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(Infinity, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      var _state = this.state;
 	      var disabled = _state.disabled;
 	      var loading = _state.loading;
 	      var _props = this.props;
 	      var offsetRatio = _props.offsetRatio;
 	      var onNewData = _props.onNewData;
+	      var _onScroll = _props.onScroll;
 
-	      var rest = _objectWithoutProperties(_props, ['offsetRatio', 'onNewData']);
+	      var rest = _objectWithoutProperties(_props, ['offsetRatio', 'onNewData', 'onScroll']);
 
 	      var enabled = !disabled && !loading; // not listening for onScroll event
 	      // if disabled or loading
 	      return _react2.default.createElement(
 	        'div',
-	        _extends({}, rest, { onScroll: enabled && this.handleScroll.bind(this) }),
+	        _extends({}, rest, { onScroll: function onScroll(e) {
+	            return enabled && _this2.handleScroll(e, _onScroll);
+	          } }),
 	        this.props.children
 	      );
 	    }
 	  }, {
 	    key: 'handleScroll',
-	    value: function handleScroll(e) {
+	    value: function handleScroll(e, onScroll) {
 	      var _props2 = this.props;
 	      var offsetRatio = _props2.offsetRatio;
 	      var onNewData = _props2.onNewData;
@@ -141,6 +146,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	          }
 	        }
+	      }
+
+	      if (onScroll) {
+	        onScroll(e);
 	      }
 	    }
 	  }, {

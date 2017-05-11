@@ -10,16 +10,16 @@ export default class Infinity extends React.Component {
   }
   render() {
     const {disabled, loading} = this.state;
-    const {offsetRatio, onNewData, ...rest} = this.props;
+    const {offsetRatio, onNewData, onScroll, ...rest} = this.props;
     const enabled = !disabled && !loading; // not listening for onScroll event
                                            // if disabled or loading
     return (
-      <div {...rest} onScroll={enabled && this.handleScroll.bind(this)}>
+      <div {...rest} onScroll={(e) => enabled && this.handleScroll(e, onScroll)}>
         {this.props.children}
       </div>
     );
   }
-  handleScroll(e) {
+  handleScroll(e, onScroll) {
     const {offsetRatio, onNewData} = this.props;
     const {target} = e;
     const fullHeight = target.scrollHeight;
@@ -42,6 +42,10 @@ export default class Infinity extends React.Component {
           }
         }
       }
+    }
+
+    if (onScroll) {
+      onScroll(e);
     }
   }
   newDataCallback(shouldContinue) {
